@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBA.WebApi", "NBA.WebApi\NBA.WebApi.csproj", "{45341A88-1517-4E00-952B-CE5288C09D9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBA.Data", "NBA.Data\NBA.Data.csproj", "{B0A694A6-B204-4D38-9D77-1A4C79DB4CBD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBA.Models", "NBA.Models\NBA.Models.csproj", "{F3FBE451-730E-44FE-BB29-655F823449C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBA.Services", "NBA.Services\NBA.Services.csproj", "{CE2AF6FB-49A6-4A52-9C82-3FC9F73E099D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45341A88-1517-4E00-952B-CE5288C09D9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45341A88-1517-4E00-952B-CE5288C09D9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45341A88-1517-4E00-952B-CE5288C09D9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45341A88-1517-4E00-952B-CE5288C09D9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0A694A6-B204-4D38-9D77-1A4C79DB4CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0A694A6-B204-4D38-9D77-1A4C79DB4CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0A694A6-B204-4D38-9D77-1A4C79DB4CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0A694A6-B204-4D38-9D77-1A4C79DB4CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3FBE451-730E-44FE-BB29-655F823449C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3FBE451-730E-44FE-BB29-655F823449C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3FBE451-730E-44FE-BB29-655F823449C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3FBE451-730E-44FE-BB29-655F823449C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE2AF6FB-49A6-4A52-9C82-3FC9F73E099D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE2AF6FB-49A6-4A52-9C82-3FC9F73E099D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE2AF6FB-49A6-4A52-9C82-3FC9F73E099D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE2AF6FB-49A6-4A52-9C82-3FC9F73E099D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
