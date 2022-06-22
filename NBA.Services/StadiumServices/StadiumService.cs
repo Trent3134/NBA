@@ -13,6 +13,20 @@ public class StadiumService : IStadiumService
 
             _dbContext = dbContext;
         }
+
+        public async Task<bool> CreateStadiumAsync(StadiumCreate request)
+        {
+            var stadiumEntity = new StadiumEntity
+            {
+                StadiumCapacity = request.StadiumCapacity,
+                StadiumLocation = request.StadiumLocation,
+                StadiumName = request.StadiumName
+            };
+            _dbContext.Stadiums.Add(stadiumEntity);
+
+            var numberOfChanges = await _dbContext.SaveChangesAsync();
+            return numberOfChanges == 1;
+        }
         public async Task<IEnumerable<StadiumListItem>> GetAllStadiumsAsync()
         {
             var stadiums = await _dbContext.Stadiums

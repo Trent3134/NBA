@@ -13,6 +13,19 @@ public class StadiumController : ControllerBase
         {
             _stadiumService = stadiumService;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateStadiums([FromBody] StadiumCreate request)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            
+            if (await _stadiumService.CreateStadiumAsync(request))
+                return Ok("Stadium created successfully.");
+
+            return BadRequest("Stadium could not be created.");
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetAllStadiums()
         {
