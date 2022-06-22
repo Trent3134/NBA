@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
     public interface IStadiumService
     {
-        
+        Task<IEnumerable<StadiumListItem>> GetAllStadiumsAsync();
     }
