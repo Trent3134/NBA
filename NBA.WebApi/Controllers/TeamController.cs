@@ -45,4 +45,6 @@ using Microsoft.AspNetCore.Mvc;
             return await _tService.UpdateTeamAsync(req)? Ok("Team was upated") : BadRequest("Team was not updated");
         }
 
+    
+
     }
