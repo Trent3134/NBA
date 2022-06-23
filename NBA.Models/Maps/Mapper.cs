@@ -10,6 +10,7 @@ public class Mapper : Profile
         {
             CreateMap<TeamEntity, TeamDetail>().ReverseMap();
             CreateMap<TeamCreate, TeamEntity>().ReverseMap();
+            CreateMap<TeamEntity, TeamListItem>().ReverseMap();
             //TeamCreate -> TeamEntity
         }
     }
