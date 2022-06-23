@@ -11,5 +11,5 @@ public class ApplicationDbContext : DbContext
 
         public DbSet<PlayersEntity> Players { get; set; }
         public DbSet<TeamEntity> Teams { get; set; }
-        public DbSet<StadiumEntity> Stadium { get; set; }
+        public DbSet<StadiumEntity> Stadiums { get; set; }
     }
