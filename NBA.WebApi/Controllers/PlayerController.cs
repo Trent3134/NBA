@@ -39,7 +39,7 @@ using Microsoft.AspNetCore.Mvc;
             return playerPosType is null ? Ok(playerPosType) : NotFound();
         }
 
-        [HttpGet("playerByJerseyNumber/{JerseyNumber:int}")]
+        [HttpGet("playerByJerseyNumber/{JerseyNumber:int}")] 
         public async Task<IActionResult> GetAllPlayersByJerseyNum([FromRoute]int JerseyNumber)
         {
             var playerJerseyNumber = await _pService.GetPlayerByNumberAsync(JerseyNumber);
@@ -54,4 +54,5 @@ using Microsoft.AspNetCore.Mvc;
             }
             return await _pService.UpdatePlayerAsync(req) ? Ok($"{req.Name} was updated"): BadRequest("Player could not be updated.");
         }
+
     }
