@@ -28,4 +28,21 @@ using Microsoft.AspNetCore.Mvc;
             return BadRequest("Team could not be created!");
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllTeams()
+        {
+            var teams = await _tService.GetAllTeamsAsync();
+            return Ok(teams);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateTeamById([FromBody] TeamUpdate req)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return await _tService.UpdateTeamAsync(req)? Ok("Team was upated") : BadRequest("Team was not updated");
+        }
+
     }
