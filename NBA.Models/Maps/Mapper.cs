@@ -11,6 +11,12 @@ public class Mapper : Profile
             CreateMap<TeamEntity, TeamDetail>().ReverseMap();
             CreateMap<TeamCreate, TeamEntity>().ReverseMap();
             CreateMap<TeamEntity, TeamListItem>().ReverseMap();
-            //TeamCreate -> TeamEntity
+            CreateMap<TeamUpdate, TeamEntity>().ReverseMap();
+            
+            CreateMap<PlayersEntity, PlayerDetail>().ReverseMap();
+            CreateMap<PlayersEntity, PlayerListItem>().ReverseMap();
+            CreateMap<PlayerCreate, PlayersEntity>().ReverseMap();
+            CreateMap<PlayerUpdate, PlayersEntity>().ReverseMap();
+            
         }
     }
