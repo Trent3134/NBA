@@ -32,4 +32,14 @@ public class StadiumController : ControllerBase
             var stadiums = await _stadiumService.GetAllStadiumsAsync();
             return Ok(stadiums);
         }
+
+        [HttpGet("{stadiumId:int}")]
+        public async Task<IActionResult> GetStadiumById([FromRoute] int stadiumId)
+        {
+            var detail = await _stadiumService.GetStadiumById(stadiumId);
+
+            return detail is not null
+            ? Ok(detail)
+            : NotFound();
+        }
     }

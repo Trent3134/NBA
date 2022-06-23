@@ -41,4 +41,18 @@ public class StadiumService : IStadiumService
 
             return stadiums;
         }
+
+        public async Task<StadiumDetail> GetStadiumById(int stadiumId)
+        {
+            var stadiumEntity = await _dbContext.Stadiums
+                .FirstOrDefaultAsync(e =>
+                    e.Id == stadiumId);
+            return stadiumEntity is null ? null : new StadiumDetail
+            {
+                Id = stadiumEntity.Id,
+                StadiumCapacity = stadiumEntity.StadiumCapacity,
+                StadiumLocation = stadiumEntity.StadiumLocation,
+                StadiumName = stadiumEntity.StadiumName
+            };
+        }
     }
