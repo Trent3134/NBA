@@ -9,5 +9,7 @@ public class Mapper : Profile
         public Mapper()
         {
             CreateMap<TeamEntity, TeamDetail>().ReverseMap();
+            CreateMap<TeamCreate, TeamEntity>().ReverseMap();
+            //TeamCreate -> TeamEntity
         }
     }
