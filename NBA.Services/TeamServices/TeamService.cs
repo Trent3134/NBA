@@ -23,7 +23,7 @@ public class TeamService : ITeamService
         return numberOfChanges == 1;
     }
     
-    public async  Task<TeamEntity> GetTeamByTeamName(string teamName)
+    public async Task<TeamEntity> GetTeamByTeamName(string teamName)
     {
         var team = await _context.Teams.Where(team => team.TeamName == teamName).ToListAsync();
         if (team is null)

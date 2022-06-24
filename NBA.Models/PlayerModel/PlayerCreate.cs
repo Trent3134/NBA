@@ -16,4 +16,7 @@ using System.Threading.Tasks;
         public int Age { get; set; }
         [Required]
         public string Height { get; set; }
+        [Required]
+        public int TeamId { get; set; }
+
     }
