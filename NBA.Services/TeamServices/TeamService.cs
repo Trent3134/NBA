@@ -33,6 +33,17 @@ public class TeamService : ITeamService
         return _mapper.Map<TeamEntity>(team);
     }
 
+    public async Task<IEnumerable<TeamDetail>> GetTeamByLocation(Locations locations)
+    {
+        var teams = await _context.Teams.Where(teams => teams.Location == locations).ToListAsync();
+        if (teams is null)
+        {
+            return null;
+        }
+        return _mapper.Map<List<TeamDetail>>(teams);
+    }
+
+
     public async Task<TeamEntity> GetTeamByOwnerAsync(string teamOwner)
     {
         var team = await _context.Teams.Where(team => team.TeamOwner == teamOwner).ToListAsync();
