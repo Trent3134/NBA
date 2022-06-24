@@ -32,18 +32,18 @@ using Microsoft.AspNetCore.Mvc;
             var allPlayers = await _pService.GetAllPlayersAsync();
             return Ok(allPlayers);
         }
-        [HttpGet("PlayerByPosition/{Positions:int}")]
+        [HttpGet("PlayerByPositions/{Positions:int}")]
         public async Task<IActionResult> GetAllPlayersByPos([FromRoute] Positions Positions)
         {
-            var playerPosType = await _pService.GetPlayersByPosition(Positions);
-            return playerPosType is null ? Ok(playerPosType) : NotFound();
+            var playerPosType = await _pService.GetPlayersByPositionAsync(Positions);
+            return playerPosType is not null ? Ok(playerPosType) : NotFound();
         }
 
         [HttpGet("playerByJerseyNumber/{JerseyNumber:int}")] 
         public async Task<IActionResult> GetAllPlayersByJerseyNum([FromRoute]int JerseyNumber)
         {
             var playerJerseyNumber = await _pService.GetPlayerByNumberAsync(JerseyNumber);
-            return playerJerseyNumber is null ? Ok(playerJerseyNumber) : NotFound();
+            return playerJerseyNumber is  not null ? Ok(playerJerseyNumber) : NotFound();
         }
         [HttpPut]
         public async Task<IActionResult> UpdatePlayerInfo([FromBody] PlayerUpdate req)
@@ -53,6 +53,12 @@ using Microsoft.AspNetCore.Mvc;
                 return BadRequest();
             }
             return await _pService.UpdatePlayerAsync(req) ? Ok($"{req.Name} was updated"): BadRequest("Player could not be updated.");
+        }
+
+        [HttpDelete("{Id:int}")]
+        public async Task<IActionResult> DeletePlayer([FromRoute] int Id)
+        {
+            return await _pService.DeletePlayer(Id) ? Ok($"{Id} was deleted") : BadRequest($"{Id} could not be removed");
         }
 
     }

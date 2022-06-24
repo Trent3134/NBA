@@ -27,7 +27,7 @@ public class PlayerService : IPlayerService
             var playerList = _mapper.Map<List<PlayerListItem>>(allPlayers);
             return playerList;
         }
-        public async Task<IEnumerable<PlayerDetail>> GetPlayersByPosition(Positions Positions)
+        public async Task<IEnumerable<PlayerDetail>> GetPlayersByPositionAsync(Positions Positions)
         {
             var players = await _context.Players.Where(p => p.Positions == Positions).ToListAsync();
             if (players is null)
