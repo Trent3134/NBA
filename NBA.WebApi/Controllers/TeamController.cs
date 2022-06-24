@@ -53,6 +53,13 @@ using Microsoft.AspNetCore.Mvc;
             : NotFound();
         }
 
+        [HttpGet("GetTeamByLocation/{Locations:int}")]
+        public async Task<IActionResult> GetTeamByLocation([FromRoute] Locations locations)
+        {
+            var teamLocationsType = await _tService.GetTeamByLocation(locations);
+            return teamLocationsType is null ? Ok(teamLocationsType) : NotFound();
+        }
+
         [HttpPut]
         public async Task<IActionResult> UpdateTeamById([FromBody] TeamUpdate req)
         {
