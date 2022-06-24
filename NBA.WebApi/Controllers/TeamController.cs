@@ -35,6 +35,24 @@ using Microsoft.AspNetCore.Mvc;
             return Ok(teams);
         }
 
+        [HttpGet("GetTeamByOwner")]
+        public async Task<IActionResult> GetTeamByTeamOwner([FromRoute] string teamOwner)
+        {
+            var detail = await _tService.GetTeamByOwnerAsync(teamOwner);
+            return detail is not null
+            ? Ok(detail)
+            : NotFound();
+        }
+
+        [HttpGet("GetTeamByName")]
+        public async Task<IActionResult> GetTeamByTeamName([FromRoute] string teamName)
+        {
+            var detail = await _tService.GetTeamByTeamName(teamName);
+            return detail is not null
+            ? Ok(detail)
+            : NotFound();
+        }
+
         [HttpPut]
         public async Task<IActionResult> UpdateTeamById([FromBody] TeamUpdate req)
         {
@@ -45,6 +63,12 @@ using Microsoft.AspNetCore.Mvc;
             return await _tService.UpdateTeamAsync(req)? Ok("Team was upated") : BadRequest("Team was not updated");
         }
 
-    
+        [HttpDelete("{teamId:int}")]
+        public async Task<IActionResult> DeleteTeam([FromRoute] int teamId)
+        {
+            return await _tService.DeleteTeamByIdAsync(teamId)
+                ? Ok($"Team {teamId} has been removed!")
+                : BadRequest($"Tream {teamId} could not be removed!");
+        }    
 
     }
