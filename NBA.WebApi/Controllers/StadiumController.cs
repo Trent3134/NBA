@@ -42,4 +42,12 @@ public class StadiumController : ControllerBase
             ? Ok(detail)
             : NotFound();
         }
+
+        [HttpDelete("{stadiumId:int}")]
+        public async Task<IActionResult> DeleteStadium([FromRoute] int stadiumId)
+        {
+            return await _stadiumService.DeleteStadiumAsync(stadiumId)
+            ? Ok("Stadium was deleted")
+            : BadRequest("Stadium could not be deleted");
+        }
     }

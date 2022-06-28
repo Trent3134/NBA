@@ -10,4 +10,5 @@ using System.Threading.Tasks;
         Task<IEnumerable<StadiumListItem>> GetAllStadiumsAsync();
         Task<StadiumDetail> GetStadiumById(int stadiumId);
         Task<bool> UpdateStadiumAsync(StadiumUpdate request);
+        Task<bool>DeleteStadiumAsync(int stadiumId);
     }

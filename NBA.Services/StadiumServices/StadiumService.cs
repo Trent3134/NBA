@@ -68,5 +68,18 @@ public class StadiumService : IStadiumService
             var numberOfChanges= await _dbContext.SaveChangesAsync();
 
             return numberOfChanges == 1;
+        } 
+
+        public async Task<bool>DeleteStadiumAsync(int stadiumId)
+        {
+            var stadiumEntity = await _dbContext.Stadiums
+                .FirstOrDefaultAsync(e =>
+                    e.Id == stadiumId);
+            
+            _dbContext.Stadiums.Remove(stadiumEntity);
+
+            var numberOfChanges= await _dbContext.SaveChangesAsync();
+
+            return numberOfChanges == 1;
         }
     }
