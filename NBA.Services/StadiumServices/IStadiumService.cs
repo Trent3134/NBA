@@ -9,4 +9,5 @@ using System.Threading.Tasks;
         Task<bool> CreateStadiumAsync(StadiumCreate request);
         Task<IEnumerable<StadiumListItem>> GetAllStadiumsAsync();
         Task<StadiumDetail> GetStadiumById(int stadiumId);
+        Task<bool> UpdateStadiumAsync(StadiumUpdate request);
     }

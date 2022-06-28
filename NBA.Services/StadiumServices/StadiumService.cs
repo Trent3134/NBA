@@ -55,4 +55,18 @@ public class StadiumService : IStadiumService
                 StadiumName = stadiumEntity.StadiumName
             };
         }
+
+        public async Task<bool> UpdateStadiumAsync(StadiumUpdate request)
+        {
+            var stadiumEntity = await _dbContext.Stadiums.FindAsync(request.Id);
+
+            
+            stadiumEntity.StadiumCapacity = request.StadiumCapacity;
+            stadiumEntity.StadiumName = request.StadiumName;
+            stadiumEntity.StadiumLocation = request.StadiumLocation;
+
+            var numberOfChanges= await _dbContext.SaveChangesAsync();
+
+            return numberOfChanges == 1;
+        }
     }
