@@ -10,5 +10,4 @@ using System.Threading.Tasks;
         public string Location { get; set; }
         public string TeamName { get; set; }
         public string TeamOwner { get; set; }
-        public virtual List<PlayersEntity> Players { get; set; }
     }

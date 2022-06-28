@@ -11,6 +11,4 @@ using System.Threading.Tasks;
         SmallForward, 
         PowerForward, 
         Center
-
-
     }

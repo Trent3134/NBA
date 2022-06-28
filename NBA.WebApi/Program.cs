@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,13 +10,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<IStadiumService, StadiumService>();
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// builder.Services.AddHttpContextAccessor();
 builder.Services.AddAutoMapper(typeof(Mapper));
+builder.Services.AddScoped<IPlayerService, PlayerService>();
+builder.Services.AddScoped<IStadiumService, StadiumService>();
 builder.Services.AddScoped<ITeamService, TeamService>();
+
+
 
 var app = builder.Build();
 
