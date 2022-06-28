@@ -70,7 +70,7 @@ public class StadiumService : IStadiumService
             return numberOfChanges == 1;
         } 
 
-        public async Task<bool>DeleteStadiumAsync(int stadiumId)
+        public async Task<bool> DeleteStadiumAsync(int stadiumId)
         {
             var stadiumEntity = await _dbContext.Stadiums
                 .FirstOrDefaultAsync(e =>
