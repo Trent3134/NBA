@@ -30,7 +30,7 @@ using Microsoft.AspNetCore.Mvc;
         [HttpGet("GetPlayerByTeam/{teamId:int}")]
         public async Task<IActionResult> GetPlayersFromTeam([FromRoute] int teamId)
         {
-            var playerList = await _tService.GetPlayersByTeam(teamId);
+            var playerList = await _tService.GetPlayersByTeam(teamId);  
             return playerList is not null ? Ok(playerList) : NotFound();
         }
 

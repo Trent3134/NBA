@@ -10,6 +10,6 @@ using System.Threading.Tasks;
         public string Name { get; set; }
         public Positions Positions { get; set; }
         public int JerseyNumber { get; set; }
-         public int TeamEntityId { get; set; }
+        public int TeamEntityId { get; set; }
 
     }

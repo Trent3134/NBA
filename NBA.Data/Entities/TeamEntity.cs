@@ -10,11 +10,8 @@ using System.Threading.Tasks;
         [Key]
         public int Id { get; set; }
         public Locations Location { get; set; }
-        [Required]
         public string TeamName { get; set; }
-        [Required]
         public string TeamOwner { get; set; }
-        [Required]
         public DateTimeOffset CreatedAt { get; set; }
         public virtual List<PlayersEntity> Players { get; set; }
     }

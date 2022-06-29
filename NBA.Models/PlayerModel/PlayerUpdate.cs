@@ -9,7 +9,7 @@ using System.Threading.Tasks;
     {
         //public int Id { get; set; }
         [Required]
-         public string Name { get; set; }
+        public string Name { get; set; }
         [Required]
         public int JerseyNumber { get; set; }
         public string HomeTown { get; set; }
