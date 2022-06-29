@@ -43,15 +43,14 @@ public class TeamService : ITeamService
         return _mapper.Map<List<TeamDetail>>(teams);
     }
 
-
-    public async Task<TeamEntity> GetTeamByOwnerAsync(string teamOwner)
+    public async Task<IEnumerable<TeamDetail>> GetTeamByTeamOwnerAsync(string TeamOwner)
     {
-        var team = await _context.Teams.Where(team => team.TeamOwner == teamOwner).ToListAsync();
-        if (team is null)
+        var teamOwner = await _context.Teams.Where(team => team.TeamOwner == TeamOwner).ToListAsync();
+        if (teamOwner is null)
         {
             return null;
         }
-        return _mapper.Map<TeamEntity>(team);
+        return _mapper.Map<List<TeamDetail>>(teamOwner);
     }
     public async Task<IEnumerable<TeamListItem>> GetAllTeamsAsync()
     {

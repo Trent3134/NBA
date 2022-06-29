@@ -36,12 +36,10 @@ using Microsoft.AspNetCore.Mvc;
         }
 
         [HttpGet("GetTeamByOwner")]
-        public async Task<IActionResult> GetTeamByTeamOwner([FromRoute] string teamOwner)
+        public async Task<IActionResult> GetTeamByTeamOwner([FromRoute] string TeamOwner)
         {
-            var detail = await _tService.GetTeamByOwnerAsync(teamOwner);
-            return detail is not null
-            ? Ok(detail)
-            : NotFound();
+            var detail = await _tService.GetTeamByTeamOwnerAsync(TeamOwner);
+            return TeamOwner is not null ? Ok(TeamOwner) : NotFound();
         }
 
         [HttpGet("GetTeamByName")]
@@ -56,8 +54,8 @@ using Microsoft.AspNetCore.Mvc;
         [HttpGet("GetTeamByLocation/{Locations:int}")]
         public async Task<IActionResult> GetTeamByLocation([FromRoute] Locations locations)
         {
-            var teamLocationsType = await _tService.GetTeamByLocation(locations);
-            return teamLocationsType is null ? Ok(teamLocationsType) : NotFound();
+            var teamLocations = await _tService.GetTeamByLocation(locations);
+            return teamLocations is null ? Ok(teamLocations) : NotFound();
         }
 
         [HttpPut]
