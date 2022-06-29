@@ -22,36 +22,46 @@ public class TeamService : ITeamService
         var numberOfChanges = await _context.SaveChangesAsync();
         return numberOfChanges == 1;
     }
-    
-    public async Task<TeamEntity> GetTeamByTeamName(string teamName)
+
+    public async Task<IEnumerable<PlayerListItem>> GetPlayersByTeam(int teamId)
     {
-        var team = await _context.Teams.Where(team => team.TeamName == teamName).ToListAsync();
+        var teamPlayer = await _context.Players.Where(p => p.TeamEntityId == teamId).ToListAsync();
+        if (teamPlayer is null)
+        {
+            return null;
+        }
+        return _mapper.Map<List<PlayerListItem>>(teamPlayer);
+    }
+    
+    public async Task<IEnumerable<TeamListItem>> GetTeamByTeamName(string TeamName)
+    {
+        var team = await _context.Teams.Where(t => t.TeamName == TeamName).ToListAsync();
         if (team is null)
         {
             return null;
         }
-        return _mapper.Map<TeamEntity>(team);
+        return _mapper.Map<List<TeamListItem>>(team);
     }
 
-    public async Task<IEnumerable<TeamDetail>> GetTeamByLocation(Locations locations)
+    public async Task<IEnumerable<TeamListItem>> GetTeamByLocation(Locations Location)
     {
-        var teams = await _context.Teams.Where(teams => teams.Location == locations).ToListAsync();
+        var teams = await _context.Teams.Where(t => t.Location == Location).ToListAsync();
         if (teams is null)
         {
             return null;
         }
-        return _mapper.Map<List<TeamDetail>>(teams);
+        return _mapper.Map<List<TeamListItem>>(teams);
     }
 
 
-    public async Task<TeamEntity> GetTeamByOwnerAsync(string teamOwner)
+    public async Task<IEnumerable<TeamListItem>> GetTeamByOwnerAsync(string TeamOwner)
     {
-        var team = await _context.Teams.Where(team => team.TeamOwner == teamOwner).ToListAsync();
+        var team = await _context.Teams.Where(t => t.TeamOwner == TeamOwner).ToListAsync();
         if (team is null)
         {
             return null;
         }
-        return _mapper.Map<TeamEntity>(team);
+        return _mapper.Map<List<TeamListItem>>(team);
     }
     public async Task<IEnumerable<TeamListItem>> GetAllTeamsAsync()
     {

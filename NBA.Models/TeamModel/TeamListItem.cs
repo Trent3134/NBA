@@ -9,4 +9,5 @@ using System.Threading.Tasks;
         public int Id { get; set; }
         public string TeamName { get; set; }
         public string TeamOwner { get; set; }
+        public Locations Location { get; set; }
     }

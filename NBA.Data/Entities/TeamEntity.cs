@@ -17,5 +17,5 @@ using System.Threading.Tasks;
         public string TeamOwner { get; set; }
         [Required]
         public DateTimeOffset CreatedAt { get; set; }
-        //public virtual List<PlayersEntity> Players { get; set; }
+        public virtual List<PlayersEntity> Players { get; set; }
     }
