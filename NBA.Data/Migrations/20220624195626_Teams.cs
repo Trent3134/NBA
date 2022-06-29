@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NBA.Data.Migrations
 {
-    public partial class TeamTable : Migration
+    public partial class Teams : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

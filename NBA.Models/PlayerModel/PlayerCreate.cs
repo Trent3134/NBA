@@ -17,6 +17,6 @@ using System.Threading.Tasks;
         [Required]
         public string Height { get; set; }
         [Required]
-        public int TeamId { get; set; }
+        public int TeamEntityId { get; set; }
 
     }
