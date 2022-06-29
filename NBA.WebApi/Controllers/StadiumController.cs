@@ -34,6 +34,16 @@ public class StadiumController : ControllerBase
         }
 
         [HttpGet("{stadiumId:int}")]
+        public async Task<IActionResult> GetTeamsByStadium([FromRoute] int stadiumId)
+        {
+            var stadiumTeams = await _stadiumService.GetAllTeamsByStadiumAsync(stadiumId);
+
+            return stadiumTeams is not null
+            ? Ok(stadiumTeams)
+            : NotFound();
+        }
+
+        [HttpGet("{stadiumId:int}")]
         public async Task<IActionResult> GetStadiumById([FromRoute] int stadiumId)
         {
             var detail = await _stadiumService.GetStadiumById(stadiumId);

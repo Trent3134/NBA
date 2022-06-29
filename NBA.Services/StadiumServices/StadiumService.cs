@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
 public class StadiumService : IStadiumService
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly IMapper _mapper;
         public StadiumService(ApplicationDbContext dbContext)
         {
 
@@ -41,6 +42,15 @@ public class StadiumService : IStadiumService
 
             return stadiums;
         }
+        public async Task<IEnumerable<TeamListItem>> GetAllTeamsByStadiumAsync(int stadiumId)
+    {
+        var stadiumTeam = await _dbContext.Teams.Where(p => p.Id == stadiumId).ToListAsync();
+        if (stadiumTeam is null)
+        {
+            return null;
+        }
+        return _mapper.Map<List<TeamListItem>>(stadiumTeam);
+    }
 
         public async Task<StadiumDetail> GetStadiumById(int stadiumId)
         {
