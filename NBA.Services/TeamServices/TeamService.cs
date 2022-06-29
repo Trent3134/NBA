@@ -62,6 +62,7 @@ public class TeamService : ITeamService
             return null;
         }
         return _mapper.Map<List<TeamListItem>>(team);
+        
     }
     public async Task<IEnumerable<TeamListItem>> GetAllTeamsAsync()
     {

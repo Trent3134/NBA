@@ -10,6 +10,7 @@ using System.Threading.Tasks;
         [Key]
         public int Id { get; set; }
         [Required]
+        [EnumDataType(typeof(Locations))]
         public Locations Location { get; set; }
         [Required]
         public string TeamName { get; set; }
