@@ -8,6 +8,7 @@ using System.Threading.Tasks;
     {
         public int Id { get; set; }
         public int StadiumCapacity { get; set; }
-        public string StadiumLocation { get; set; }
+        public Locations StadiumLocation { get; set; }
         public string StadiumName { get; set; }
+        public virtual List<TeamEntity> Teams {get; set;}
     }

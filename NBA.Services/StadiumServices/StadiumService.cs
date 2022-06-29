@@ -52,7 +52,9 @@ public class StadiumService : IStadiumService
                 Id = stadiumEntity.Id,
                 StadiumCapacity = stadiumEntity.StadiumCapacity,
                 StadiumLocation = stadiumEntity.StadiumLocation,
-                StadiumName = stadiumEntity.StadiumName
+                StadiumName = stadiumEntity.StadiumName,
+                Teams = stadiumEntity.Teams
+                
             };
         }
 
