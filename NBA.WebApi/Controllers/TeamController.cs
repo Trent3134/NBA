@@ -27,6 +27,12 @@ using Microsoft.AspNetCore.Mvc;
             }
             return BadRequest("Team could not be created!");
         }
+        [HttpGet("GetPlayerByTeam/{teamId:int}")]
+        public async Task<IActionResult> GetPlayersFromTeam([FromRoute] int teamId)
+        {
+            var playerList = await _tService.GetPlayersByTeam(teamId);
+            return playerList is not null ? Ok(playerList) : NotFound();
+        }
 
         [HttpGet]
         public async Task<IActionResult> GetAllTeams()
@@ -35,29 +41,29 @@ using Microsoft.AspNetCore.Mvc;
             return Ok(teams);
         }
 
-        [HttpGet("GetTeamByOwner")]
-        public async Task<IActionResult> GetTeamByTeamOwner([FromRoute] string teamOwner)
+        [HttpGet("GetTeamByOwner/{TeamOwner}")]
+        public async Task<IActionResult> GetTeamByTeamOwner([FromRoute] string TeamOwner)
         {
-            var detail = await _tService.GetTeamByOwnerAsync(teamOwner);
+            var detail = await _tService.GetTeamByOwnerAsync(TeamOwner);
             return detail is not null
             ? Ok(detail)
             : NotFound();
         }
 
-        [HttpGet("GetTeamByName")]
-        public async Task<IActionResult> GetTeamByTeamName([FromRoute] string teamName)
+        [HttpGet("GetTeamByName/{TeamName}")]
+        public async Task<IActionResult> GetTeamByTeamName([FromRoute] string TeamName)
         {
-            var detail = await _tService.GetTeamByTeamName(teamName);
+            var detail = await _tService.GetTeamByTeamName(TeamName);
             return detail is not null
             ? Ok(detail)
             : NotFound();
         }
 
-        [HttpGet("GetTeamByLocation/{Locations:int}")]
-        public async Task<IActionResult> GetTeamByLocation([FromRoute] Locations locations)
+        [HttpGet("GetTeamByLocations/{Location:int}")]
+        public async Task<IActionResult> GetTeamByLocations([FromRoute] Locations Location)
         {
-            var teamLocationsType = await _tService.GetTeamByLocation(locations);
-            return teamLocationsType is null ? Ok(teamLocationsType) : NotFound();
+            var teamLocationsType = await _tService.GetTeamByLocation(Location);
+            return teamLocationsType is not null ? Ok(teamLocationsType) : NotFound();
         }
 
         [HttpPut]
