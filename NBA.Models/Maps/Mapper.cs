@@ -18,5 +18,6 @@ public class Mapper : Profile
             CreateMap<PlayerCreate, PlayersEntity>().ReverseMap();
             CreateMap<PlayerUpdate, PlayersEntity>().ReverseMap();
             
+            CreateMap<StadiumEntity, StadiumDetail>().ReverseMap();
         }
     }

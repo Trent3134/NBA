@@ -9,10 +9,12 @@ public class StadiumService : IStadiumService
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IMapper _mapper;
-        public StadiumService(ApplicationDbContext dbContext)
+        public StadiumService(ApplicationDbContext dbContext, IMapper mapper)
         {
 
             _dbContext = dbContext;
+
+            _mapper = mapper;
         }
 
         public async Task<bool> CreateStadiumAsync(StadiumCreate request)
