@@ -35,7 +35,7 @@ public class TeamService : ITeamService
 
     public async Task<IEnumerable<TeamDetail>> GetTeamByLocation(Locations locations)
     {
-        var teams = await _context.Teams.Where(teams => teams.Location == locations).ToListAsync();
+        var teams = await _context.Teams.Where(t => t.Locations == locations).ToListAsync();
         if (teams is null)
         {
             return null;
@@ -43,14 +43,14 @@ public class TeamService : ITeamService
         return _mapper.Map<List<TeamDetail>>(teams);
     }
 
-    public async Task<IEnumerable<TeamDetail>> GetTeamByTeamOwnerAsync(string TeamOwner)
+    public async Task<IEnumerable<TeamListItem>> GetTeamByOwnerAsync(string TeamOwner)
     {
         var teamOwner = await _context.Teams.Where(team => team.TeamOwner == TeamOwner).ToListAsync();
         if (teamOwner is null)
         {
             return null;
         }
-        return _mapper.Map<List<TeamDetail>>(teamOwner);
+        return _mapper.Map<List<TeamListItem>>(teamOwner);
     }
     public async Task<IEnumerable<TeamListItem>> GetAllTeamsAsync()
     {

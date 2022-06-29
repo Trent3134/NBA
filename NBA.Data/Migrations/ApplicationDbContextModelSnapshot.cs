@@ -111,15 +111,10 @@ namespace NBA.Data.Migrations
             modelBuilder.Entity("PlayersEntity", b =>
                 {
                     b.HasOne("TeamEntity", "TeamEntity")
-                        .WithMany("Players")
+                        .WithMany()
                         .HasForeignKey("TeamEntityId");
 
                     b.Navigation("TeamEntity");
-                });
-
-            modelBuilder.Entity("TeamEntity", b =>
-                {
-                    b.Navigation("Players");
                 });
 #pragma warning restore 612, 618
         }

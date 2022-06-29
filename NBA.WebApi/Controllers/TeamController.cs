@@ -35,13 +35,13 @@ using Microsoft.AspNetCore.Mvc;
             return Ok(teams);
         }
 
-        [HttpGet("GetTeamByOwner")]
+        [HttpGet("GetTeamByOwner/{")]
         public async Task<IActionResult> GetTeamByTeamOwner([FromRoute] string TeamOwner)
         {
             var detail = await _tService.GetTeamByTeamOwnerAsync(TeamOwner);
             return TeamOwner is not null ? Ok(TeamOwner) : NotFound();
         }
-
+        
         [HttpGet("GetTeamByName")]
         public async Task<IActionResult> GetTeamByTeamName([FromRoute] string teamName)
         {

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
         [Key]
         public int Id { get; set; }
         [Required]
-        public Locations Location { get; set; }
+        public Locations Locations { get; set; }
         [Required]
         public string TeamName { get; set; }
         [Required]
