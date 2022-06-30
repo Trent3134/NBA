@@ -15,4 +15,5 @@ using System.Threading.Tasks;
         public Locations StadiumLocation { get; set; }
         [Required]
         public string StadiumName { get; set; }
+        
     }
