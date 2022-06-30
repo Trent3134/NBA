@@ -13,6 +13,7 @@ using System.Threading.Tasks;
         public string TeamOwner { get; set; }
         [Required]
         public Locations Location { get; set; }
+        public Mascot Mascot { get; set; }
         public int? StadiumEntityId { get; set; }
 
     }

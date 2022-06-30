@@ -27,6 +27,7 @@ using Microsoft.AspNetCore.Mvc;
             }
             return BadRequest("Team could not be created!");
         }
+
         [HttpGet("GetPlayerByTeam/{teamId:int}")]
         public async Task<IActionResult> GetPlayersFromTeam([FromRoute] int teamId)
         {
@@ -57,6 +58,13 @@ using Microsoft.AspNetCore.Mvc;
             return detail is not null
             ? Ok(detail)
             : NotFound();
+        }
+
+        [HttpGet("GetTeamByMascot/{Mascot:int}")]
+        public async Task<IActionResult> GetTeamByMascot([FromRoute] Mascot Mascot)
+        {
+            var teamMascotType = await _tService.GetTeamByMascotAsync(Mascot);
+            return teamMascotType is not null ? Ok(teamMascotType) : NotFound();
         }
 
         [HttpGet("GetTeamByLocations/{Location:int}")]

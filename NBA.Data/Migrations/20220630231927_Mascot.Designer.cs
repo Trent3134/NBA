@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace NBA.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220624195626_Teams")]
-    partial class Teams
+    [Migration("20220630231927_Mascot")]
+    partial class Mascot
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,9 +70,8 @@ namespace NBA.Data.Migrations
                     b.Property<int>("StadiumCapacity")
                         .HasColumnType("int");
 
-                    b.Property<string>("StadiumLocation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("StadiumLocation")
+                        .HasColumnType("int");
 
                     b.Property<string>("StadiumName")
                         .IsRequired()
@@ -97,6 +96,12 @@ namespace NBA.Data.Migrations
                     b.Property<int>("Location")
                         .HasColumnType("int");
 
+                    b.Property<int>("Mascot")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StadiumEntityId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TeamName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -107,16 +112,35 @@ namespace NBA.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("StadiumEntityId");
+
                     b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("PlayersEntity", b =>
                 {
                     b.HasOne("TeamEntity", "TeamEntity")
-                        .WithMany()
+                        .WithMany("Players")
                         .HasForeignKey("TeamEntityId");
 
                     b.Navigation("TeamEntity");
+                });
+
+            modelBuilder.Entity("TeamEntity", b =>
+                {
+                    b.HasOne("StadiumEntity", null)
+                        .WithMany("Teams")
+                        .HasForeignKey("StadiumEntityId");
+                });
+
+            modelBuilder.Entity("StadiumEntity", b =>
+                {
+                    b.Navigation("Teams");
+                });
+
+            modelBuilder.Entity("TeamEntity", b =>
+                {
+                    b.Navigation("Players");
                 });
 #pragma warning restore 612, 618
         }

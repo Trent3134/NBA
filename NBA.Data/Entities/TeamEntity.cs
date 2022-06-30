@@ -16,6 +16,7 @@ using System.Threading.Tasks;
         public string TeamName { get; set; }
         [Required]
         public string TeamOwner { get; set; }
+        public Mascot Mascot { get; set; }
         [Required]
         public DateTimeOffset CreatedAt { get; set; }
         public virtual List<PlayersEntity> Players { get; set; }

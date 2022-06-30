@@ -53,7 +53,6 @@ public class TeamService : ITeamService
         return _mapper.Map<List<TeamListItem>>(teams);
     }
 
-
     public async Task<IEnumerable<TeamListItem>> GetTeamByOwnerAsync(string TeamOwner)
     {
         var team = await _context.Teams.Where(t => t.TeamOwner == TeamOwner).ToListAsync();
@@ -63,6 +62,17 @@ public class TeamService : ITeamService
         }
         return _mapper.Map<List<TeamListItem>>(team);
     }
+
+    public async Task<IEnumerable<TeamDetail>> GetTeamByMascotAsync(Mascot Mascot)
+    {
+        var teams = await _context.Teams.Where(t => t.Mascot == Mascot).ToListAsync();
+        if (teams is null)
+        {
+            return null;
+        }
+        return _mapper.Map<List<TeamDetail>>(teams);
+    }
+
     public async Task<IEnumerable<TeamListItem>> GetAllTeamsAsync()
     {
         var teamListItem = await _context.Teams.ToListAsync();

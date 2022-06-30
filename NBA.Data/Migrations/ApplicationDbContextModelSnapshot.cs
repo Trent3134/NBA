@@ -94,6 +94,9 @@ namespace NBA.Data.Migrations
                     b.Property<int>("Location")
                         .HasColumnType("int");
 
+                    b.Property<int>("Mascot")
+                        .HasColumnType("int");
+
                     b.Property<int?>("StadiumEntityId")
                         .HasColumnType("int");
 
