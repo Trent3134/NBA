@@ -32,4 +32,32 @@ public class StadiumController : ControllerBase
             var stadiums = await _stadiumService.GetAllStadiumsAsync();
             return Ok(stadiums);
         }
+
+        [HttpGet("GetTeamByStadium/{stadiumId:int}")]
+        public async Task<IActionResult> GetTeamsByStadium([FromRoute] int stadiumId)
+        {
+            var stadiumTeams = await _stadiumService.GetAllTeamsByStadiumAsync(stadiumId);
+
+            return stadiumTeams is not null
+            ? Ok(stadiumTeams)
+            : NotFound();
+        }
+
+        [HttpGet("GetStadiumById/{stadiumId:int}")]
+        public async Task<IActionResult> GetStadiumById([FromRoute] int stadiumId)
+        {
+            var detail = await _stadiumService.GetStadiumById(stadiumId);
+
+            return detail is not null
+            ? Ok(detail)
+            : NotFound();
+        }
+
+        [HttpDelete("DeleteStadium/{stadiumId:int}")]
+        public async Task<IActionResult> DeleteStadium([FromRoute] int stadiumId)
+        {
+            return await _stadiumService.DeleteStadiumAsync(stadiumId)
+            ? Ok("Stadium was deleted")
+            : BadRequest("Stadium could not be deleted");
+        }
     }

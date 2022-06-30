@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,7 +13,11 @@ using System.Threading.Tasks;
         [Required]
         public int StadiumCapacity { get; set; }
         [Required]
-        public string StadiumLocation { get; set; }
+        public Locations StadiumLocation { get; set; }
         [Required]
         public string StadiumName { get; set; }
+        [ForeignKey(nameof(TeamEntity))]
+        public int? TeamEntityId { get; set; }
+
+        public virtual List<TeamEntity> Teams  {get; set;}
     }

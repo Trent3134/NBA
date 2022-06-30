@@ -10,7 +10,8 @@ using System.Threading.Tasks;
         [Required]
         public int StadiumCapacity { get; set; }
         [Required]
-        public string StadiumLocation { get; set; }
+        public Locations StadiumLocation { get; set; }
         [Required]
         public string StadiumName { get; set; }
+        
     }
