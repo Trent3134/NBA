@@ -33,7 +33,7 @@ public class StadiumController : ControllerBase
             return Ok(stadiums);
         }
 
-        [HttpGet("{stadiumId:int}")]
+        [HttpGet("GetTeamByStadium/{stadiumId:int}")]
         public async Task<IActionResult> GetTeamsByStadium([FromRoute] int stadiumId)
         {
             var stadiumTeams = await _stadiumService.GetAllTeamsByStadiumAsync(stadiumId);
@@ -43,7 +43,7 @@ public class StadiumController : ControllerBase
             : NotFound();
         }
 
-        [HttpGet("{stadiumId:int}")]
+        [HttpGet("GetStadiumById/{stadiumId:int}")]
         public async Task<IActionResult> GetStadiumById([FromRoute] int stadiumId)
         {
             var detail = await _stadiumService.GetStadiumById(stadiumId);
@@ -53,7 +53,7 @@ public class StadiumController : ControllerBase
             : NotFound();
         }
 
-        [HttpDelete("{stadiumId:int}")]
+        [HttpDelete("DeleteStadium/{stadiumId:int}")]
         public async Task<IActionResult> DeleteStadium([FromRoute] int stadiumId)
         {
             return await _stadiumService.DeleteStadiumAsync(stadiumId)
