@@ -16,8 +16,5 @@ using System.Threading.Tasks;
         public Locations StadiumLocation { get; set; }
         [Required]
         public string StadiumName { get; set; }
-        [ForeignKey(nameof(TeamEntity))]
-        public int? TeamEntityId { get; set; }
-
         public virtual List<TeamEntity> Teams  {get; set;}
     }

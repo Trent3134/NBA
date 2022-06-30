@@ -23,7 +23,8 @@ public class StadiumService : IStadiumService
             {
                 StadiumCapacity = request.StadiumCapacity,
                 StadiumLocation = request.StadiumLocation,
-                StadiumName = request.StadiumName
+                StadiumName = request.StadiumName,
+                
             };
             _dbContext.Stadiums.Add(stadiumEntity);
 
