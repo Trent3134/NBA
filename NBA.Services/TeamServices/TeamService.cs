@@ -62,6 +62,7 @@ public class TeamService : ITeamService
             return null;
         }
         return _mapper.Map<List<TeamListItem>>(team);
+        
     }
     public async Task<IEnumerable<TeamListItem>> GetAllTeamsAsync()
     {
@@ -70,6 +71,7 @@ public class TeamService : ITeamService
 
         return teamList;
     }
+
     public async Task<bool> UpdateTeamAsync(TeamUpdate req)
     {
         var teamEntity = await _context.Teams
