@@ -21,6 +21,30 @@ namespace NBA.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Game", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("TeamAId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TeamBId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TeamEntityId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TeamEntityId");
+
+                    b.ToTable("Games");
+                });
+
             modelBuilder.Entity("PlayersEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -115,6 +139,13 @@ namespace NBA.Data.Migrations
                     b.ToTable("Teams");
                 });
 
+            modelBuilder.Entity("Game", b =>
+                {
+                    b.HasOne("TeamEntity", null)
+                        .WithMany("Games")
+                        .HasForeignKey("TeamEntityId");
+                });
+
             modelBuilder.Entity("PlayersEntity", b =>
                 {
                     b.HasOne("TeamEntity", "TeamEntity")
@@ -138,6 +169,8 @@ namespace NBA.Data.Migrations
 
             modelBuilder.Entity("TeamEntity", b =>
                 {
+                    b.Navigation("Games");
+
                     b.Navigation("Players");
                 });
 #pragma warning restore 612, 618

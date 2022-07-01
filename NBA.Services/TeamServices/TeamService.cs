@@ -23,6 +23,22 @@ public class TeamService : ITeamService
         return numberOfChanges == 1;
     }
 
+    // public async Task<bool> CreateGame(GameCreate req)
+    // {
+    //     if (req is null)
+    //     {
+    //         return false;
+    //     }
+    //     var entity = new Game{
+    //         TeamAId = req.TeamAId,
+    //         TeamBId = req.TeamBId
+    //     };
+    //     _context.Games.Add(entity);
+    //    await _context.SaveChangesAsync();
+    //    return true;
+        
+    // }
+
     public async Task<IEnumerable<PlayerListItem>> GetPlayersByTeam(int teamId)
     {
         var teamPlayer = await _context.Players.Where(p => p.TeamEntityId == teamId).ToListAsync();

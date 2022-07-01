@@ -20,6 +20,7 @@ using System.Threading.Tasks;
         [Required]
         public DateTimeOffset CreatedAt { get; set; }
         public virtual List<PlayersEntity> Players { get; set; }
+        public virtual List<Game> Games { get; set; }
 
         [ForeignKey(nameof(StadiumEntity))]
         public int? StadiumEntityId { get; set; }
