@@ -21,5 +21,6 @@ public class Mapper : Profile
             CreateMap<Game, GameDetail>().ReverseMap();
            
             
+            CreateMap<StadiumEntity, StadiumDetail>().ReverseMap();
         }
     }

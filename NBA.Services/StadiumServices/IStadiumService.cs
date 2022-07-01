@@ -8,4 +8,8 @@ using System.Threading.Tasks;
     {
         Task<bool> CreateStadiumAsync(StadiumCreate request);
         Task<IEnumerable<StadiumListItem>> GetAllStadiumsAsync();
+        Task<IEnumerable<TeamListItem>> GetAllTeamsByStadiumAsync(int stadiumId);
+        Task<StadiumDetail> GetStadiumById(int stadiumId);
+        Task<bool> UpdateStadiumAsync(StadiumUpdate request);
+        Task<bool> DeleteStadiumAsync(int stadiumId);
     }

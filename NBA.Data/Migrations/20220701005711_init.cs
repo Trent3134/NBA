@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NBA.Data.Migrations
 {
-    public partial class Teams : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,7 @@ namespace NBA.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StadiumCapacity = table.Column<int>(type: "int", nullable: false),
-                    StadiumLocation = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StadiumLocation = table.Column<int>(type: "int", nullable: false),
                     StadiumName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -33,11 +33,37 @@ namespace NBA.Data.Migrations
                     Location = table.Column<int>(type: "int", nullable: false),
                     TeamName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     TeamOwner = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                    CreatedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    StadiumEntityId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teams", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Teams_Stadiums_StadiumEntityId",
+                        column: x => x.StadiumEntityId,
+                        principalTable: "Stadiums",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Games",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TeamAId = table.Column<int>(type: "int", nullable: false),
+                    TeamBId = table.Column<int>(type: "int", nullable: false),
+                    TeamEntityId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Games", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Games_Teams_TeamEntityId",
+                        column: x => x.TeamEntityId,
+                        principalTable: "Teams",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -65,21 +91,34 @@ namespace NBA.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Games_TeamEntityId",
+                table: "Games",
+                column: "TeamEntityId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Players_TeamEntityId",
                 table: "Players",
                 column: "TeamEntityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Teams_StadiumEntityId",
+                table: "Teams",
+                column: "StadiumEntityId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Games");
+
+            migrationBuilder.DropTable(
                 name: "Players");
 
             migrationBuilder.DropTable(
-                name: "Stadiums");
+                name: "Teams");
 
             migrationBuilder.DropTable(
-                name: "Teams");
+                name: "Stadiums");
         }
     }
 }

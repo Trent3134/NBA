@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace NBA.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220630010736_gamesTable")]
-    partial class gamesTable
+    [Migration("20220701005711_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,9 +94,8 @@ namespace NBA.Data.Migrations
                     b.Property<int>("StadiumCapacity")
                         .HasColumnType("int");
 
-                    b.Property<string>("StadiumLocation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("StadiumLocation")
+                        .HasColumnType("int");
 
                     b.Property<string>("StadiumName")
                         .IsRequired()
@@ -121,6 +120,9 @@ namespace NBA.Data.Migrations
                     b.Property<int>("Location")
                         .HasColumnType("int");
 
+                    b.Property<int?>("StadiumEntityId")
+                        .HasColumnType("int");
+
                     b.Property<string>("TeamName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -130,6 +132,8 @@ namespace NBA.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("StadiumEntityId");
 
                     b.ToTable("Teams");
                 });
@@ -148,6 +152,18 @@ namespace NBA.Data.Migrations
                         .HasForeignKey("TeamEntityId");
 
                     b.Navigation("TeamEntity");
+                });
+
+            modelBuilder.Entity("TeamEntity", b =>
+                {
+                    b.HasOne("StadiumEntity", null)
+                        .WithMany("Teams")
+                        .HasForeignKey("StadiumEntityId");
+                });
+
+            modelBuilder.Entity("StadiumEntity", b =>
+                {
+                    b.Navigation("Teams");
                 });
 
             modelBuilder.Entity("TeamEntity", b =>
