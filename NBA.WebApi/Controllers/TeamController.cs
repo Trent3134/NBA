@@ -27,6 +27,9 @@ using Microsoft.AspNetCore.Mvc;
             }
             return BadRequest("Team could not be created!");
         }
+
+        // [HttpPost("teamVsTeam")]
+        // public async Task
         [HttpGet("GetPlayerByTeam/{teamId:int}")]
         public async Task<IActionResult> GetPlayersFromTeam([FromRoute] int teamId)
         {
