@@ -53,6 +53,17 @@ public class StadiumController : ControllerBase
             : NotFound();
         }
 
+        [HttpPut]
+        public async Task<IActionResult> UpdateStadiumById([FromBody] StadiumUpdate request)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            return await _stadiumService.UpdateStadiumAsync(request)
+            ? Ok("Stadium was updated") 
+            : BadRequest("Stadium was not updated");
+        }
         [HttpDelete("DeleteStadium/{stadiumId:int}")]
         public async Task<IActionResult> DeleteStadium([FromRoute] int stadiumId)
         {
