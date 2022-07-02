@@ -12,6 +12,6 @@ public class GameDetail
     
     public int TeamBId { get; set; }
     public TeamDetail TeamBInfo { get; set; }
-    public virtual List<PlayerListItem> Players { get; set; }
+    //public virtual List<PlayerListItem> Players { get; set; }
     //public DateTimeOffset GameDate { get; set; }
 }

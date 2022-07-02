@@ -66,7 +66,7 @@ public class GameService : IGameService
                 GameId = game.Id,
                 TeamAInfo = conversionA,
                 TeamBInfo = conversionB,
-                
+                 
             };
         }
         return null;
